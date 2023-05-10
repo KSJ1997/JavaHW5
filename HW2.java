@@ -24,17 +24,20 @@ public class HW2 {
             nameCounts.put(name, nameCounts.getOrDefault(name, 0) + 1);
         }
 
-        Map<String, Integer> sortedNameCounts = new TreeMap<>(new Comparator<String>() {
-            @Override
-            public int compare(String s1, String s2) {
-                return Integer.compare(nameCounts.get(s2), nameCounts.get(s1));
-            }
-        });
-        sortedNameCounts.putAll(nameCounts);
-
-        for (String name : sortedNameCounts.keySet()) {
-            int count = sortedNameCounts.get(name);
+        Map<Integer, List<String>> countToNames = new TreeMap<>(Collections.reverseOrder());
+        for (String name : nameCounts.keySet()) {
+            int count = nameCounts.get(name);
             if (count > 1) {
+                if (!countToNames.containsKey(count)) {
+                    countToNames.put(count, new ArrayList<>());
+                }
+                countToNames.get(count).add(name);
+            }
+        }
+
+        for (int count : countToNames.keySet()) {
+            List<String> names = countToNames.get(count);
+            for (String name : names) {
                 System.out.println(name + " - " + count);
             }
         }

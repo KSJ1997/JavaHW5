@@ -1,24 +1,10 @@
 // Реализуйте структуру телефонной книги с помощью HashMap, учитывая, что 1 человек может иметь несколько телефонов.
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Scanner;
 
 public class HW1 {
-    private class Contact {
-        private Set<String> phoneNumbers;
-
-        public Contact() {
-            this.phoneNumbers = new HashSet<>();
-        }
-
-        public void addPhoneNumber(String phoneNumber) {
-            this.phoneNumbers.add(phoneNumber);
-        }
-
-        public Set<String> getPhoneNumbers() {
-            return this.phoneNumbers;
-        }
-    }
-
     private Map<String, Contact> contacts;
     private Scanner scanner;
 
@@ -99,10 +85,11 @@ public class HW1 {
                     phoneBook.printPhoneBook();
                     break;
                 case 0:
-                    System.out.println("Выход.");
+                    System.out.println("До свидания!");
                     break;
                 default:
-                    System.out.println("Некорректный выбор.");
+                    System.out.println("Неверный выбор.");
+                    break;
             }
         }
     }
